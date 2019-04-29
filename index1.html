@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Mall Customer Segmentation</title>
+        <meta charset="utf-8">
+        <style>
+            body {  
+                    font-family: Helvetica;
+            }
+
+
+
+            .axis path,
+            .axis line {
+                fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+                }
+
+            .dot {
+                stroke: #000;
+            }
+
+            .tooltip {
+                position: absolute;
+                width: 200px;
+                height: 28px;
+                background-color: white;
+                pointer-events: none;
+                }
+
+            
+            .bar {
+                    fill: steelblue;
+                    
+            }
+           
+
+        </style>
+    </head>
+
+    <body>
+
+        <button class="tablink" onclick="openPage('Home', this, 'red')" id="defaultOpen">Home</button>
+        <button class="tablink" onclick="openPage('Age_Trend', this, 'green')">Age Distribution</button>
+        <button class="tablink" onclick="openPage('Customer_Clustering', this, 'blue')">Customer Clustering</button>
+        <button class="tablink" onclick="openPage('Age_groups', this, 'orange')">Age bar</button>
+        <button class="tablink" onclick="openPage('Income_Ranges', this, 'yellow')">Income bar</button>
+
+        <div id="Home" class="tabcontent">
+
+            <h3>Customer Segmentation Project for Data Visualization.</h3>
+            <img src="data/Customer_segmentation.jpg" height ="500" width="500"> 
+                   <p>The purpose of this experiment is to explore a hypothetical dataset to find any discernible patterns. It is extremly useful to perform Customer Segmentation because you gain an understanding of which demographics are within your customer base. It creates opportunities to fine tune marketing strategies and how to better serve you custoemrs. </p>
+                   <p> What is Customer Segmentation? </p>
+                   <p> Customer segmentation is the process of dividing customers into groups based on common characteristics so companies can market to each group more effectively. The goal of segmenting customers is to decide how to relate to customers in each segment in order to maximize the value of each customer to the business.</p>
+                   <p> The data has information about 200 visitiors to a mall in the United States. The information about each visitor is obtained from metadata from credit card information. We have varibles consisitng of the age, gender, and annual income of each visitor. We can obtain various trends aout customer behavior from the data and some of the trends I will be exploring are shown in the various tabs on this page. </p>        
+            
+        </div>
+
+        <div id="Age_Trend" class="tabcontent">
+            <h3>Age Distribution</h3>
+            <p> The Age Distribution page displays how the Age of a customer relates to the customer's spending score. This will give an indication of the spending habits of the younger and older people in the sample. </p>
+            <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+            <script src="js/mall_customers.js"></script> 
+            <p> The scatterplot displays a slight negative correlation between Age and Spending score i.e. as the customers age their spending score reduces. Older people tend to have a lower score than their younger counterparts. This could be allayed to a number of factors and it is open to interpretation for the users of this data. I see it as an opportunity for retailers to target Older customers becuase they have more income than the youth and could potentially spend more in the retails stores. </p>
+        </div>
+
+        <div id="Customer_Clustering" class="tabcontent">
+          <h3>Customer Clustering</h3>
+          <p> The goal for customer clustering is to see how consumers behave. Without any coaxing the customers fall into segements or clusers of behavior. This gives the retailers ideas of which customers to target based on their behavior and what opportunities there are to get more customers.
+          <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+          <script src="js/income_of_customers.js"></script>
+          <p> Suucessfully dispaying the cluster formation, we can see that the customers fall into certain categories. Some customers have low annual income but don't spend wisely(high spending score), other customers have median income and don't spend too much at the mall and others have high income and are frugal when it comes to spending at the mall. We notice 5 clusters that form and they seem to be equally comprised of male and female customers.</p>
+          <p> Low income, low spending score: This clusters consists of sensible spenders. </p>
+          <p> Low income, high spending score: This cluster consists of careless spenders. </p>
+          <p> Mid income, medium spending score: This clusters is very middle of the road and can be considered standard customers. </p>
+          <p> High income, low spending score: This cluster consists of careful spenders. </p>
+          <p> High income, high spending score: This is the target group beacsue they spend as much as they make and retailers can build a steady relationship with them. </p>
+
+        </div>
+
+        <div id="Age_groups" class="tabcontent">
+          <h3>Age bar</h3>
+          <p> We display an overview of the average spending score of each of the different age groups in the dataset. </p> 
+          <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+          <script src="js/age_barchart.js"></script>
+          <p> This graph shows the behavior of the different Age groups. As expected, we notice that the big spenders are the younger demographic, this may be attributed to the fact that they spend more time at the mall than people who are older. By doing this they can be more easily targeted by the retailers in the mall. </p>
+
+
+        </div>
+
+        <div id="Income_Ranges" class="tabcontent">
+          <h3>Income bar</h3>
+          <p> We display an overview of the average spending score of each of the different Income groups in the dataset. </p> 
+          <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+          <script src="js/income_barchart.js"></script>
+          <p> This graph shows the behavior of major Income groups. We notice that the average scores are very similar and there isn't much deviation based on how much money is spent between these Income groups. </p>
+
+
+        </div>
+
+        <script>
+    function openPage(pageName, elmnt, color) {
+  // Hide all elements with class="tabcontent" by default */
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Remove the background color of all tablinks/buttons
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+  }
+
+  // Show the specific tab content
+  document.getElementById(pageName).style.display = "block";
+
+  // Add the specific color to the button used to open the tab content
+  elmnt.style.backgroundColor = color;
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+            
+    </body>
+</html>
+
